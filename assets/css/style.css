@@ -1256,6 +1256,12 @@ main > section {
 .access__inner {
   display: block;
 }
+.access__photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
 .access__info {
   padding: 48px 0;
   text-align: center;
@@ -1342,6 +1348,9 @@ main > section {
 @media (max-width: 768px) {
   .access { padding: 40px 0; }
   .access .section-title { font-size: 1.8rem; }
+  .access__photos {
+    grid-template-columns: 1fr;
+  }
   .access__dl { gap: 8px 20px; }
   .access__info { padding: 32px 0; }
 }
