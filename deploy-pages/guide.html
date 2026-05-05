@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご利用案内 — KOTO HOUSE</title>
+  <meta name="description" content="Koto House のご利用案内。空間の構成・ご利用料金・注意事項をご確認ください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png?v=20260504">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png?v=20260504">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- OGP -->
+  <meta property="og:title" content="KOTO HOUSE DAZAIFU">
+  <meta property="og:description"
+        content="音と光と、静けさのある場所。太宰府天満宮そばのギャラリー＆コンサートホール。">
+  <meta property="og:image"
+        content="https://koto-house.pages.dev/assets/images/ogp.png?v=20260504">
+  <meta property="og:image:secure_url"
+        content="https://koto-house.pages.dev/assets/images/ogp.png?v=20260504">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://koto-house.pages.dev/guide">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KOTO HOUSE DAZAIFU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KOTO HOUSE DAZAIFU">
+  <meta name="twitter:description" content="太宰府天満宮そばのギャラリー＆コンサートホール。">
+  <meta name="twitter:image"
+        content="https://koto-house.pages.dev/assets/images/ogp.png?v=20260504">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/ui/logo-horizontal-white.png" alt="KOTO HOUSE" class="logo logo--white">
+        <img src="assets/images/ui/logo-horizontal-black.png" alt="KOTO HOUSE" class="logo logo--black">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#schedule">Schedule</a></li>
+        <li><a href="index.html#tea-music">Space</a></li>
+        <li><a href="index.html#access">Access</a></li>
+        <li><a href="guide.html">Guide</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <img src="assets/images/ui/icon-hamburger.png" alt="" class="hamburger__icon">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- SP ドロワーメニュー -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__logo">
+      <a href="index.html">
+        <img src="assets/images/ui/logo-stacked-white.png" alt="KOTO HOUSE" class="drawer__logo-img">
+      </a>
+    </div>
+    <button class="drawer__close" id="drawer-close" aria-label="メニューを閉じる">✕</button>
+    <nav class="drawer__nav">
+      <ul>
+        <li><a href="index.html#schedule" class="drawer__link">Schedule</a></li>
+        <li><a href="index.html#tea-music" class="drawer__link">Space</a></li>
+        <li><a href="index.html#access" class="drawer__link">Access</a></li>
+        <li><a href="guide.html" class="drawer__link">Guide</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <main>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="guide-hero" id="hero">
+      <div class="container">
+        <span class="section-label section-label--accent">GUIDE</span>
+        <h1 class="guide-hero__heading">ご利用案内</h1>
+        <p class="guide-hero__sub">空間のご利用をご検討の方へ</p>
+      </div>
+    </section>
+
+    <!-- ==================== FLOOR PLAN ==================== -->
+    <section class="guide-floorplan">
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-label section-label--accent">FLOOR PLAN</span>
+          <h2 class="section-title">空間の構成</h2>
+          <img src="assets/images/ui/divider.png" alt="" class="divider-img">
+        </header>
+        <div class="guide-floorplan__figure fade-in">
+          <button class="image-zoom guide-floorplan__zoom" type="button" aria-label="空間の構成を拡大表示する">
+            <img src="assets/images/floorplan-sp.png"
+                 alt="空間の構成"
+                 class="guide-floorplan__img">
+          </button>
+          <div class="guide-floorplan__legend">
+            <div class="guide-floorplan__areas">
+              <p><span class="floorplan-area-label">T エリア</span>　ティースペース</p>
+              <p><span class="floorplan-area-label">P エリア</span>　ピアノ・コンサートエリア</p>
+              <p><span class="floorplan-area-label">G エリア</span>　ギャラリー</p>
+              <p><span class="floorplan-area-label">茶室</span>　　　和室・茶道スペース</p>
+            </div>
+
+            <div class="guide-floorplan__capacity">
+              <p><span class="floorplan-area-label">CAPACITY</span>　47〜50名</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PRICE ==================== -->
+    <section class="guide-price">
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-label section-label--accent">PRICE</span>
+          <h2 class="section-title">ご利用料金</h2>
+          <img src="assets/images/ui/divider.png" alt="" class="divider-img">
+        </header>
+        <div class="guide-price__table-wrap fade-in">
+          <table class="guide-price__table">
+            <thead>
+              <tr>
+                <th>ご利用内容</th>
+                <th>単位</th>
+                <th>平日</th>
+                <th>土・日・祝日</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="ご利用内容">コンサート（G.T.P.エリア）</td>
+                <td data-label="単位">1時間</td>
+                <td data-label="平日" class="price-cell">7,000円</td>
+                <td data-label="土・日・祝日" class="price-cell">7,000円</td>
+              </tr>
+              <tr>
+                <td data-label="ご利用内容">
+                  ピアノ・練習など（P.G.エリア）<br>
+                  <span class="price-note-small">（10:00〜20:00）1名あたり</span>
+                </td>
+                <td data-label="単位">1時間</td>
+                <td data-label="平日" class="price-cell">2,000円</td>
+                <td data-label="土・日・祝日" class="price-cell">3,000円</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="guide-price__note">
+            ― 企画ギャラリーです。<br>
+            コンサート・発表会・ピアノ・練習はご紹介制となります。
+          </p>
+          <a href="assets/docs/terms.pdf" download
+             style="font-size: 0.8rem;
+                    color: var(--color-accent);
+                    text-decoration: underline;
+                    letter-spacing: 0.05em;">
+            利用規定（PDF）をダウンロード
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ACCESS ==================== -->
+    <section class="guide-access">
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-label section-label--accent">ACCESS</span>
+          <h2 class="section-title">アクセス</h2>
+          <img src="assets/images/ui/divider.png" alt="" class="divider-img">
+        </header>
+        <div class="guide-access__inner fade-in">
+          <dl class="guide-access__dl">
+            <dt>所在地</dt>
+            <dd>福岡県太宰府市宰府 3-2-25</dd>
+            <dt>交通</dt>
+            <dd>西鉄太宰府駅より徒歩4分</dd>
+            <dt>駐車場</dt>
+            <dd>駐車場はございません</dd>
+          </dl>
+          <p class="access__caution">koto house前の道は一方通行 →<br>となっておりますのでご注意ください。</p>
+          <button class="image-zoom guide-access__map-zoom" type="button" aria-label="アクセスマップを拡大表示する">
+            <img src="assets/images/access-map2.png"
+                 alt="アクセスマップ"
+                 class="guide-access__map">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="guide-contact">
+      <div class="container">
+        <div class="guide-contact__inner fade-in">
+          <span class="section-label section-label--accent">CONTACT</span>
+          <h2 class="guide-contact__heading">お問い合わせ</h2>
+          <p class="guide-contact__text">
+            ご利用のご相談・ご予約はメールまたは<br>
+            InstagramのDMよりお気軽にお問い合わせください。
+          </p>
+          <p class="guide-contact__phone">
+            電話でのお問い合わせ：
+            <a href="tel:092-408-8064"
+               style="color: inherit;">
+              092-408-8064
+            </a>
+          </p>
+          <div class="guide-contact__btns">
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=kotohouse@joy.ocn.ne.jp&amp;su=KOTO%20HOUSE%E3%81%94%E5%88%A9%E7%94%A8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="guide-contact__btn">
+              メールで問い合わせる →
+            </a>
+            <a href="https://www.instagram.com/kot_ohouse/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="guide-contact__btn">
+              Instagramで問い合わせる →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="image-modal" id="image-modal" aria-hidden="true">
+    <button class="image-modal__close" type="button" aria-label="拡大表示を閉じる">✕</button>
+    <button class="image-modal__backdrop" type="button" tabindex="-1" aria-label="拡大表示を閉じる"></button>
+    <img src="assets/images/floorplan-sp.png" alt="空間の構成" class="image-modal__img">
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html">
+          <img src="assets/images/ui/logo-stacked-white.png" alt="KOTO HOUSE" class="footer__logo">
+        </a>
+        <p class="footer__tagline">音と光と、静けさのある場所。</p>
+      </div>
+      <nav class="footer__nav">
+        <ul>
+          <li><a href="index.html#schedule">Schedule</a></li>
+          <li><a href="index.html#tea-music">Space</a></li>
+          <li><a href="index.html#access">Access</a></li>
+          <li><a href="guide.html">Guide</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__address">福岡県太宰府市宰府 3-2-25</p>
+      <a href="https://www.instagram.com/kot_ohouse/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="footer__instagram"
+         aria-label="Instagramを開く">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round"
+             stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <p class="footer__copy">&copy; 2025 KOTO HOUSE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
