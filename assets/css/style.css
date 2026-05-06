@@ -1279,11 +1279,11 @@ main > section {
 
   .gallery__img,
   .tearoom__img {
-    position: absolute;
-    inset: 0;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    object-position: center;
+    height: auto;
   }
 
   .gallery__text,
