@@ -1129,6 +1129,31 @@ main > section {
   border-color: rgba(255, 255, 255, 0.8);
 }
 
+.tea-room-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: 0 0 2px;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  transition: opacity 0.2s;
+}
+
+.tea-room-link:hover,
+.tea-room-link:focus {
+  opacity: 0.6;
+  background: transparent;
+  border-color: currentColor;
+}
+
+.tea-room-link__icon {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
 .tearoom__photo {
   overflow: hidden;
   position: relative;
