@@ -1219,6 +1219,20 @@ main > section {
   }
 }
 
+.tearoom__cta.tea-room-link {
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: 0 0 2px;
+  background: transparent;
+}
+
+.tearoom__cta.tea-room-link:hover,
+.tearoom__cta.tea-room-link:focus {
+  background: transparent;
+  border-color: currentColor;
+  opacity: 0.6;
+}
+
 /* ============================================================
    FLOOR PLAN
    ============================================================ */
