@@ -1148,7 +1148,7 @@ main > section {
 
 @media (max-width: 768px) {
   .tearoom {
-    background: var(--color-bg);
+    background: #1a1a1a;
     padding: 120px 24px;
   }
   .tearoom__inner {
@@ -1165,17 +1165,17 @@ main > section {
   .tearoom__text {
     padding: 0;
     max-width: 78%;
-    color: var(--color-dark);
+    color: var(--color-white);
   }
   .tearoom__heading {
-    color: var(--color-dark);
+    color: var(--color-white);
     font-size: 1.9rem;
     line-height: 1.8;
     letter-spacing: 0.12em;
     margin: 18px 0 24px;
   }
   .tearoom__body {
-    color: rgba(26,26,26,0.68);
+    color: rgba(255,255,255,0.68);
     font-size: 0.86rem;
     line-height: 2.25;
     letter-spacing: 0.07em;
@@ -1184,7 +1184,7 @@ main > section {
   .tearoom__cta {
     border: 0;
     padding: 0;
-    color: var(--color-accent);
+    color: rgba(255,255,255,0.78);
     font-family: var(--font-jp);
     letter-spacing: 0.12em;
   }
