@@ -552,9 +552,15 @@ main > section {
 /* ============================================================
    SCHEDULE
    ============================================================ */
-.schedule {
+.schedule { 
   background: var(--color-bg);
   padding: 120px 0;
+}
+
+.schedule__past-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 42px;
 }
 
 .schedule-list {
@@ -2293,30 +2299,32 @@ img[alt=""]:not([src]) {
 
 .past-events__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 34px 26px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .past-event-card {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 28px;
+  align-items: center;
   border-bottom: 1px solid rgba(26, 26, 26, 0.14);
-  padding-bottom: 24px;
+  padding: 22px 0;
 }
 
 .past-event-card--text {
-  min-height: 180px;
-  display: flex;
-  align-items: flex-end;
-  border-top: 1px solid rgba(139, 115, 85, 0.28);
-  padding-top: 24px;
+  display: block;
+  padding-left: 248px;
 }
 
 .past-event-card__img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   background: rgba(26, 26, 26, 0.06);
-  margin-bottom: 18px;
 }
 
 .past-event-card__date {
@@ -2422,13 +2430,18 @@ img[alt=""]:not([src]) {
     line-height: 2.15;
   }
   .past-events { padding: 72px 0 88px; }
-  .past-events__grid {
+  .past-event-card {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 14px;
+    padding: 24px 0;
   }
-  .past-event-card--text { min-height: 140px; }
-  .past-event-card__img { aspect-ratio: 4 / 5; }
+  .past-event-card--text { padding-left: 0; }
+  .past-event-card__img { aspect-ratio: 16 / 10; }
   .past-event-card__title { font-size: 0.95rem; }
+  .schedule__past-link {
+    justify-content: flex-start;
+    margin-top: 32px;
+  }
 }
 
 /* ============================================================
