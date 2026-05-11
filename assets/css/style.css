@@ -2368,22 +2368,25 @@ img[alt=""]:not([src]) {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
 }
 
 #lightbox-content {
   position: relative;
-  z-index: 1;
+  z-index: 10000;
   max-width: 90vw;
   max-height: 90vh;
   text-align: center;
 }
 
 #lightbox-img {
-  display: block;
   max-width: 90vw;
   max-height: 80vh;
   object-fit: contain;
+  display: block !important;
   margin: 0 auto;
+  position: relative;
+  z-index: 10000;
 }
 
 #lightbox-caption {
