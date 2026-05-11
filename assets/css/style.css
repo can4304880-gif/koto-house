@@ -1269,25 +1269,31 @@ main > section {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../images/about-bg.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: #1a1a1a;
 }
 
 .about__bg {
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
+}
+
+.about__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .about__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
-  background: none;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .about__content {
