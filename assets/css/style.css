@@ -2297,53 +2297,74 @@ img[alt=""]:not([src]) {
   padding: 96px 0 120px;
 }
 
-.past-events__grid {
+.past-events-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  max-width: 860px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .past-event-card {
-  display: grid;
-  grid-template-columns: minmax(140px, 220px) 1fr;
-  gap: 28px;
-  align-items: center;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.14);
-  padding: 22px 0;
+  background: var(--color-bg);
+  border: 1px solid rgba(26, 26, 26, 0.14);
 }
 
-.past-event-card--text {
-  display: block;
-  padding-left: 248px;
+.past-event-card__img-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0ece6;
 }
 
-.past-event-card__img {
+.past-event-card__img-wrap img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  background: rgba(26, 26, 26, 0.06);
+}
+
+.past-event-card__no-img {
+  width: 100%;
+  height: 100%;
+  background: #e8e3dc;
+}
+
+.past-event-card__body {
+  padding: 16px;
+  text-align: left;
 }
 
 .past-event-card__date {
   display: block;
   font-family: var(--font-en);
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
   color: var(--color-accent);
-  margin-bottom: 10px;
+  margin: 0 0 8px;
 }
 
 .past-event-card__title {
   font-family: var(--font-jp);
-  font-size: 0.98rem;
-  font-weight: 300;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  font-weight: normal;
+  line-height: 1.5;
   letter-spacing: 0.06em;
   color: var(--color-dark);
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .past-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 479px) {
+  .past-events-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* SP */
@@ -2430,13 +2451,6 @@ img[alt=""]:not([src]) {
     line-height: 2.15;
   }
   .past-events { padding: 72px 0 88px; }
-  .past-event-card {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 24px 0;
-  }
-  .past-event-card--text { padding-left: 0; }
-  .past-event-card__img { aspect-ratio: 16 / 10; }
   .past-event-card__title { font-size: 0.95rem; }
   .schedule__past-link {
     justify-content: flex-start;
