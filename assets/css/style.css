@@ -1300,7 +1300,7 @@ main > section {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .about__content {
@@ -1309,6 +1309,11 @@ main > section {
   text-align: left;
   max-width: 640px;
   padding: 0 32px;
+  color: #ffffff;
+}
+
+.about__content a {
+  color: #ffffff !important;
 }
 
 .about__heading {
@@ -1356,42 +1361,6 @@ main > section {
 @media (max-width: 768px) {
   .about { padding: 100px 0; }
   .about__body br { display: none; }
-}
-
-/* SP Snap Sections */
-@media (max-width: 768px) {
-  html,
-  main {
-    scroll-snap-type: y mandatory;
-  }
-
-  .about {
-    position: relative;
-    overflow: hidden;
-    height: 100vh;
-    scroll-snap-align: start;
-  }
-
-  .about__content {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    background: rgba(0,0,0,0.3);
-    padding: 16px;
-  }
-
-  .about .section-label {
-    color: #fff;
-  }
-
-  .about {
-    padding: 0;
-  }
-
-  .about__content {
-    max-width: calc(100% - 48px);
-    margin: 24px;
-  }
 }
 
 /* ============================================================
