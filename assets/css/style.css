@@ -1622,6 +1622,15 @@ main > section {
   letter-spacing: 0.06em;
 }
 
+.footer__credit {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #999);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
 .footer__instagram {
   display: inline-flex;
   align-items: center;
