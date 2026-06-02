@@ -2765,3 +2765,5 @@ a[href^="mailto"] {
   z-index: 100;
   pointer-events: auto;
 }
+
+.form-modal[hidden] { display: none !important; }
