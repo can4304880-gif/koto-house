@@ -95,10 +95,8 @@ async function loadSchedule() {
     list.appendChild(li);
   });
 
-  /* 動的追加要素もオブザーバーに登録 */
   observeElements(list.querySelectorAll('.schedule-item'));
 
-  /* SP: スケジュール一覧ボタンで追加2件をトグル */
   const toggleBtn = document.querySelector('.schedule-more .link-schedule');
   if (toggleBtn) {
     const span = toggleBtn.querySelector('span');
@@ -197,7 +195,6 @@ function initFormModals() {
     const form = modal.querySelector('[data-formspree-form]');
     const message = modal.querySelector('[data-form-message]');
     const submit = modal.querySelector('.form-modal__submit');
-    if (form) form.classList.remove('is-submitted');
     if (message) {
       message.textContent = '';
       message.classList.remove('is-visible', 'is-error');
@@ -320,8 +317,8 @@ function initFormModals() {
         form.classList.add('is-submitted');
         if (message) {
           message.textContent = modal.id === 'contact-modal' || modal.id === 'guide-contact-modal'
-            ? '\u304a\u554f\u3044\u5408\u308f\u305b\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3057\u305f\u3002'
-            : '\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3057\u305f\u3002\u5185\u5bb9\u3092\u78ba\u8a8d\u306e\u3046\u3048\u3001\u6298\u308a\u8fd4\u3057\u3054\u9023\u7d61\u3044\u305f\u3057\u307e\u3059\u3002';
+            ? 'お問い合わせありがとうございました。'
+            : 'ありがとうございました。内容を確認のうえ、折り返しご連絡いたします。';
           message.classList.add('is-visible');
         }
       } catch (error) {
@@ -349,9 +346,17 @@ function initPerformerModal() {
   if (!modal || !titleEl || !bodyEl || !triggers.length) return;
 
   const profileTitle = '出演者プロフィール';
-  const profileBody = '【中西　久美（フルート）】\nフルート奏者、フリーアナウンサー、TEAM美魔女メンバー、福岡市生まれ。５歳よりピアノを１０歳よりフルートを始める。東京藝術大学附属音楽高校、及び東京藝術大学卒業。第４３回全日本学生音楽コンクール東京大会第３位。第１０回宮日音楽コンクール優秀賞。大学卒業後、RKB毎日放送アナウンス部に入社。RKB毎日放送を退社してからは、フリーとして活動。RKB今日感テレビ、ＴＮＣももち浜ストアなどに出演。フルート奏者として、クラシック、ジャズ、ポップスなど幅広い共演者たちと演奏活動、フリーアナウンサーとして司会やナレーション、「愛されるコミュニケーション」と題し講話と演奏を交えた講演活動を行っている。クラシック、ジャズやポップスなど幅広い楽曲を収録した「ALL OF ME」アルバムを発売。\n\n【三宅 美紀子（piano）】\nクラシックをバックボーンに、ソリストとして九州を中心に活躍するピアニスト。管弦楽器とのアンサンブルや声楽伴奏、語り芝居や民族楽器とのコラボなど、ジャンルを超えた演奏スタイルでイベントや式典、ホールコンサート、カフェライブなど幅広いシーンに出演し、多くの観客を魅了する。オリジナル曲「阿蘇〜あの橋をいつかあなたと〜」（作詞：樋口了一／作曲：三宅美紀子）は各地で歌われ、Amazonにて発売中。FM777「コミてんラジオ」パーソナリティとしても活動する。\n\n【柴山陽子（フルート）】\n武蔵野音楽大学音楽学部器楽科フルート専攻卒業。学生時代ガラスのフルートを天皇皇后両陛下・ベルギー国王夫妻の御前にて演奏。2014年より九州古都太宰府にてコンサートホール＆ギャラリーkotohouse太宰府を運営。フルート奏者としても活動している。';
+  const profileBody = `【中西　久美（フルート）】
+フルート奏者、フリーアナウンサー、TEAM美魔女メンバー、福岡市生まれ。５歳よりピアノを１０歳よりフルートを始める。東京藝術大学附属音楽高校、及び東京藝術大学卒業。第４３回全日本学生音楽コンクール東京大会第３位。第１０回宮日音楽コンクール優秀賞。大学卒業後、RKB毎日放送アナウンス部に入社。RKB毎日放送を退社してからは、フリーとして活動。RKB今日感テレビ、ＴＮＣももち浜ストアなどに出演。フルート奏者として、クラシック、ジャズ、ポップスなど幅広い共演者たちと演奏活動、フリーアナウンサーとして司会やナレーション、「愛されるコミュニケーション」と題し講話と演奏を交えた講演活動を行っている。クラシック、ジャズやポップスなど幅広い楽曲を収録した「ALL OF ME」アルバムを発売。
+
+【三宅 美紀子（piano）】
+クラシックをバックボーンに、ソリストとして九州を中心に活躍するピアニスト。管弦楽器とのアンサンブルや声楽伴奏、語り芝居や民族楽器とのコラボなど、ジャンルを超えた演奏スタイルでイベントや式典、ホールコンサート、カフェライブなど幅広いシーンに出演し、多くの観客を魅了する。オリジナル曲「阿蘇〜あの橋をいつかあなたと〜」（作詞：樋口了一／作曲：三宅美紀子）は各地で歌われ、Amazonにて発売中。FM777「コミてんラジオ」パーソナリティとしても活動する。
+
+【柴山陽子（フルート）】
+武蔵野音楽大学音楽学部器楽科フルート専攻卒業。学生時代ガラスのフルートを天皇皇后両陛下・ベルギー国王夫妻の御前にて演奏。2014年より九州古都太宰府にてコンサートホール＆ギャラリーkotohouse太宰府を運営。フルート奏者としても活動している。`;
 
   let activeTrigger = null;
+  let lastTouchTrigger = null;
 
   function openModal(trigger) {
     activeTrigger = trigger || null;
@@ -413,9 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initImageModal();
   initFormModals();
   initPerformerModal();
-  /* 静的アニメーション要素 */
   observeElements(document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right'));
-
-  /* スケジュール非同期読み込み */
   loadSchedule();
 });
