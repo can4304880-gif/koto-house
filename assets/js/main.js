@@ -233,7 +233,8 @@ function initModals() {
 
   /* フォームモーダルを開く：属性値+"-modal" */
   document.querySelectorAll('[data-form-modal-open]').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const id = btn.getAttribute('data-form-modal-open') + '-modal';
       openModal(document.getElementById(id));
     });
