@@ -870,6 +870,27 @@ main > section {
 
 .event-card__mail:hover { opacity: 0.6; }
 
+.event-card__profile-btn {
+  display: inline-block;
+  margin: 0.75rem 0 1rem;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--color-border, rgba(139,115,85,0.32));
+  background: transparent;
+  color: var(--color-text, #2a2a2a);
+  font-family: var(--font-jp, 'Noto Serif JP', serif);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.event-card__profile-btn:hover {
+  background: var(--color-accent, #8b7355);
+  color: #fff;
+  border-color: var(--color-accent, #8b7355);
+}
+
 .event-card__soldout {
   display: inline-flex;
   align-items: center;
