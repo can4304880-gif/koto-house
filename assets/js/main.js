@@ -182,10 +182,130 @@ function initImageModal() {
   });
 }
 
+/* ---------- Modals ---------- */
+function initModals() {
+  const PERFORMERS = [
+    { name: '三宅美紀子', instrument: 'フルート' },
+    { name: '中西久美',   instrument: 'ピアノ'   },
+    { name: '柴山陽子',   instrument: 'ピアノ'   },
+  ];
+
+  function openModal(modal) {
+    if (!modal) return;
+    modal.removeAttribute('hidden');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => { modal.setAttribute('hidden', ''); }, 300);
+  }
+
+  function getOpenModal() {
+    return document.querySelector('.form-modal.is-open, #performer-modal.is-open');
+  }
+
+  /* 出演者モーダル：タイトル＆ボディを描画して開く */
+  document.querySelectorAll('[data-performer-modal-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('performer-modal');
+      if (!modal) return;
+      const titleEl = document.getElementById('performer-modal-title');
+      const bodyEl  = document.getElementById('performer-modal-body');
+      if (titleEl) titleEl.textContent = '出演者';
+      if (bodyEl) {
+        bodyEl.innerHTML = PERFORMERS.map(p =>
+          `<p><strong>${p.name}</strong>（${p.instrument}）</p>`
+        ).join('');
+      }
+      openModal(modal);
+    });
+  });
+
+  /* フォームモーダルを開く：属性値+"-modal" */
+  document.querySelectorAll('[data-form-modal-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-form-modal-open') + '-modal';
+      openModal(document.getElementById(id));
+    });
+  });
+
+  /* アンカーリンクでモーダルを開く */
+  document.querySelectorAll('a[href^="#"][href$="-modal"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const modal = document.querySelector(a.getAttribute('href'));
+      if (!modal) return;
+      e.preventDefault();
+      openModal(modal);
+    });
+  });
+
+  /* モーダルを閉じる */
+  document.querySelectorAll('[data-form-modal-close], [data-performer-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      closeModal(btn.closest('.form-modal') || document.getElementById('performer-modal'));
+    });
+  });
+
+  /* Escape キー */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const modal = getOpenModal();
+      if (modal) closeModal(modal);
+    }
+  });
+
+  /* Formspree フォーム送信 */
+  document.querySelectorAll('[data-formspree-form]').forEach(form => {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const action = form.getAttribute('action');
+      if (!action) return;
+      try {
+        const res = await fetch(action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+        const fieldsEl   = form.querySelector('[data-form-fields]');
+        const messageEl  = form.querySelector('[data-form-message]');
+        if (res.ok) {
+          if (fieldsEl)  fieldsEl.hidden = true;
+          if (messageEl) {
+            messageEl.hidden = false;
+            messageEl.textContent = 'お問い合わせありがとうございます。送信が完了しました。';
+          }
+        } else {
+          if (messageEl) {
+            messageEl.hidden = false;
+            messageEl.textContent = '送信に失敗しました。しばらくしてから再度お試しください。';
+          }
+        }
+      } catch {
+        const messageEl = form.querySelector('[data-form-message]');
+        if (messageEl) {
+          messageEl.hidden = false;
+          messageEl.textContent = '通信エラーが発生しました。しばらくしてから再度お試しください。';
+        }
+      }
+    });
+  });
+}
+
 /* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   hideDecorativeOnError();
   initImageModal();
+  initModals();
   /* 静的アニメーション要素 */
   observeElements(document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right'));
 
