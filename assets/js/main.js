@@ -236,8 +236,11 @@ function initModals() {
       if (titleEl) titleEl.textContent = '出演者';
       if (bodyEl) {
         bodyEl.innerHTML = PERFORMERS.map(p =>
-          `<p><strong>${p.name}</strong>（${p.instrument}）</p>`
-        ).join('');
+          `<div style="margin-bottom:1.5rem">
+            <p style="font-weight:500;margin-bottom:0.5rem">${p.name}（${p.instrument}）</p>
+            <p style="font-size:0.85rem;line-height:1.8">${p.bio}</p>
+          </div>`
+        ).join('<hr style="border:none;border-top:1px solid rgba(139,115,85,0.2);margin:1.5rem 0">');
       }
       openModal(modal);
     });
