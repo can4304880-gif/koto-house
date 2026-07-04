@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>請求書</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1a1a;
+    --ink-light: #555;
+    --ink-faint: #999;
+    --border: #d0ccc8;
+    --accent: #8b7355;
+    --bg: #faf9f7;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .controls {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--ink);
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+  }
+
+  .btn:hover { background: var(--ink); color: var(--white); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
+  .btn-primary:hover { background: #6d5a42; }
+
+  .invoice {
+    width: 100%;
+    max-width: 720px;
+    background: var(--white);
+    padding: 64px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .invoice::before {
+    content: '請求書';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 120px;
+    color: rgba(0,0,0,0.025);
+    font-family: 'Noto Serif JP', serif;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .invoice-title {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--ink);
+  }
+
+  .invoice-meta {
+    text-align: right;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    line-height: 2;
+  }
+
+  .invoice-meta span {
+    display: inline-block;
+    min-width: 80px;
+    color: var(--ink-faint);
+  }
+
+  .invoice-meta strong {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .invoice-parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .party-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .party-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .party-detail {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .amount-summary {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 24px 32px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .amount-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+  }
+
+  .amount-value {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+
+  .amount-value small {
+    font-size: 0.9rem;
+    margin-right: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+  }
+
+  thead tr { border-bottom: 1px solid var(--ink); }
+
+  thead th {
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+
+  thead th:last-child { text-align: right; }
+
+  tbody tr { border-bottom: 1px solid var(--border); }
+
+  tbody td {
+    padding: 16px 12px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  tbody td:last-child { text-align: right; }
+
+  .totals {
+    margin-left: auto;
+    width: 280px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+  }
+
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-light);
+  }
+
+  .totals-row.total {
+    border-bottom: 2px solid var(--ink);
+    border-top: 1px solid var(--ink);
+    padding: 12px 0;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .bank-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .bank-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+
+  .bank-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+  }
+
+  .bank-item dt {
+    color: var(--ink-faint);
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  .bank-item dd { color: var(--ink); }
+
+  .note-section {
+    margin-top: 32px;
+    padding: 16px;
+    border-left: 2px solid var(--accent);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  [contenteditable="true"] {
+    outline: none;
+    border-bottom: 1px dashed var(--border);
+    min-width: 60px;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  [contenteditable="true"]:focus {
+    border-bottom-color: var(--accent);
+    background: rgba(139, 115, 85, 0.05);
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .controls { display: none; }
+    .invoice {
+      border: none;
+      padding: 40px;
+      max-width: 100%;
+    }
+    [contenteditable="true"] { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="btn" onclick="resetDate()">日付を今日に更新</button>
+  <button class="btn btn-primary" onclick="window.print()">PDF出力 / 印刷</button>
+</div>
+
+<div class="invoice">
+
+  <div class="invoice-header">
+    <div class="invoice-title">請 求 書</div>
+    <div class="invoice-meta">
+      <div><span>発行日</span> <strong id="issue-date" contenteditable="true"></strong></div>
+      <div><span>請求番号</span> <strong contenteditable="true">2025-001</strong></div>
+      <div><span>お支払期限</span> <strong contenteditable="true">2025年6月末日</strong></div>
+    </div>
+  </div>
+
+  <div class="invoice-parties">
+    <div class="party-to">
+      <div class="party-label">請求先</div>
+      <div class="party-name">柴山 陽子 様</div>
+      <div class="party-detail">
+        〒818-0117<br>
+        福岡県太宰府市宰府3丁目2-25<br>
+        koto house
+      </div>
+    </div>
+    <div class="party-from">
+      <div class="party-label">請求元</div>
+      <div class="party-name">柴山 寛</div>
+      <div class="party-detail">
+        屋号：メドハック<br>
+        福岡県福岡市中央区白金1丁目2-12<br>
+        La Vivienda薬院 1102<br>
+        can.4304880@gmail.com
+      </div>
+    </div>
+  </div>
+
+  <div class="amount-summary">
+    <div class="amount-label">ご請求金額（税込）</div>
+    <div class="amount-value"><small>¥</small>5,500</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:50%">品目・サービス内容</th>
+        <th style="width:15%">数量</th>
+        <th style="width:20%">単価</th>
+        <th style="width:15%">金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong contenteditable="true">koto house ウェブサイト保守管理費</strong><br>
+          <span style="color:#999; font-size:0.8rem;" contenteditable="true">対象期間：2025年6月分</span>
+        </td>
+        <td>1</td>
+        <td>¥5,000</td>
+        <td>¥5,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <div class="totals-row">
+      <span>小計</span>
+      <span>¥5,000</span>
+    </div>
+    <div class="totals-row">
+      <span>消費税（10%）</span>
+      <span>¥500</span>
+    </div>
+    <div class="totals-row total">
+      <span>合計（税込）</span>
+      <span>¥5,500</span>
+    </div>
+  </div>
+
+  <div class="bank-section">
+    <div class="bank-label">お振込先</div>
+    <div class="bank-grid">
+      <dl class="bank-item">
+        <dt>金融機関</dt>
+        <dd>楽天銀行</dd>
+      </dl>
+      <dl class="bank-item">
+        <dt>支店名</dt>
+        <dd>ギター支店</dd>
+      </dl>
+      <dl class="bank-item">
+        <dt>支店コード</dt>
+        <dd>226</dd>
+      </dl>
+      <dl class="bank-item">
+        <dt>口座種別</dt>
+        <dd>普通</dd>
+      </dl>
+      <dl class="bank-item">
+        <dt>口座番号</dt>
+        <dd>5016696</dd>
+      </dl>
+      <dl class="bank-item">
+        <dt>口座名義</dt>
+        <dd>メドハック　シバヤマ　カン</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="note-section" contenteditable="true">
+    備考：お振込手数料はご負担いただけますようお願いいたします。<br>
+    ご不明な点がございましたら、お気軽にご連絡ください。
+  </div>
+
+</div>
+
+<script>
+  function getToday() {
+    const d = new Date();
+    return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  }
+
+  function resetDate() {
+    document.getElementById('issue-date').textContent = getToday();
+  }
+
+  document.getElementById('issue-date').textContent = getToday();
+</script>
+
+</body>
+</html>
