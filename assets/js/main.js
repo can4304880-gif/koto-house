@@ -188,7 +188,9 @@ function initModals() {
     {
       name: '中西　久美',
       instrument: 'フルート',
-      bio: 'フルート奏者、フリーアナウンサー、TEAM美魔女メンバー、福岡市生まれ。５歳よりピアノを１０歳よりフルートを始める。東京藝術大学附属音楽高校、及び東京藝術大学卒業。第４３回全日本学生音楽コンクール東京大会第３位。第１０回宮日音楽コンクール優秀賞。大学卒業後、RKB毎日放送アナウンス部に入社。RKB毎日放送を退社してからは、フリーとして活動。RKB今日感テレビ、ＴＮＣももち浜ストアなどに出演。フルート奏者として、クラシック、ジャズ、ポップスなど幅広い共演者たちと演奏活動、フリーアナウンサーとして司会やナレーション、「愛されるコミュニケーション」と題し講話と演奏を交えた講演活動を行っている。クラシック、ジャズやポップスなど幅広い楽曲を収録した「ALL OF ME」アルバムを発売。'
+      bio: 'フルート奏者、フリーアナウンサー、TEAM美魔女メンバー、福岡市生まれ。５歳よりピアノを１０歳よりフルートを始める。東京藝術大学附属音楽高校、及び東京藝術大学卒業。第４３回全日本学生音楽コンクール東京大会第３位。第１０回宮日音楽コンクール優秀賞。大学卒業後、RKB毎日放送アナウンス部に入社。RKB毎日放送を退社してからは、フリーとして活動。RKB今日感テレビ、ＴＮＣももち浜ストアなどに出演。フルート奏者として、クラシック、ジャズ、ポップスなど幅広い共演者たちと演奏活動、フリーアナウンサーとして司会やナレーション、「愛されるコミュニケーション」と題し講話と演奏を交えた講演活動を行っている。クラシック、ジャズやポップスなど幅広い楽曲を収録した「ALL OF ME」アルバムを発売。',
+      website: 'https://kumifl.com',
+      instagram: 'https://www.instagram.com/nakanishi.kumi/'
     },
     {
       name: '三宅 美紀子',
@@ -235,12 +237,17 @@ function initModals() {
       const bodyEl  = document.getElementById('performer-modal-body');
       if (titleEl) titleEl.textContent = '出演者';
       if (bodyEl) {
-        bodyEl.innerHTML = PERFORMERS.map(p =>
-          `<div style="margin-bottom:1.5rem">
+        bodyEl.innerHTML = PERFORMERS.map(p => {
+          const links = [];
+          if (p.website) links.push(`<a href="${p.website}" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem;font-family:var(--font-en,'Cormorant Garamond',serif);letter-spacing:0.08em;color:var(--color-accent,#8b7355);text-decoration:none;border-bottom:1px solid var(--color-accent,#8b7355);">Website</a>`);
+          if (p.instagram) links.push(`<a href="${p.instagram}" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem;font-family:var(--font-en,'Cormorant Garamond',serif);letter-spacing:0.08em;color:var(--color-accent,#8b7355);text-decoration:none;border-bottom:1px solid var(--color-accent,#8b7355);">Instagram</a>`);
+          const linksHtml = links.length ? `<div style="margin-top:0.75rem;display:flex;gap:1.5rem;">${links.join('')}</div>` : '';
+          return `<div style="margin-bottom:1.5rem">
             <p style="font-weight:500;margin-bottom:0.5rem">${p.name}（${p.instrument}）</p>
             <p style="font-size:0.85rem;line-height:1.8">${p.bio}</p>
-          </div>`
-        ).join('<hr style="border:none;border-top:1px solid rgba(139,115,85,0.2);margin:1.5rem 0">');
+            ${linksHtml}
+          </div>`;
+        }).join('<hr style="border:none;border-top:1px solid rgba(139,115,85,0.2);margin:1.5rem 0">');
       }
       openModal(modal);
     });
